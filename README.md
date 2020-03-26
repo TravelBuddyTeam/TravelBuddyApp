@@ -65,7 +65,7 @@ An App for users to interact with people who live in the place they plan on visi
    * Profile 
 
 ### [BONUS] Digital Wireframes & Mockups
-Digital Wire Frame is complete on figma.
+Digital Wire Frame is complete on figma and available at the following link: https://www.figma.com/file/B0x0iS6YtMyaYWWvQDvHgI/TravelBuddyWireFrame?node-id=0%3A1.
 
 ### [BONUS] Interactive Prototype
 http://g.recordit.co/LoQXK5SbBA.gif
