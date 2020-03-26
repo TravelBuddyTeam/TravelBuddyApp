@@ -64,13 +64,11 @@ An App for users to interact with people who live in the place they plan on visi
    * Friends 
    * Profile 
 
-## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
 ### [BONUS] Digital Wireframes & Mockups
+https://www.figma.com/file/B0x0iS6YtMyaYWWvQDvHgI/TravelBuddyWireFrame?node-id=0%3A1
 
 ### [BONUS] Interactive Prototype
+http://g.recordit.co/LoQXK5SbBA.gif
 
 ## Schema 
 [This section will be completed in Unit 9]
