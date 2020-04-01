@@ -68,7 +68,8 @@ An App for users to interact with people who live in the place they plan on visi
 Digital Wire Frame is complete on figma and available at the following link: https://www.figma.com/file/B0x0iS6YtMyaYWWvQDvHgI/TravelBuddyWireFrame?node-id=0%3A1.
 
 ### [BONUS] Interactive Prototype
-http://g.recordit.co/LoQXK5SbBA.gif
+<img src='http://g.recordit.co/LoQXK5SbBA.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 ## Schema 
 [This section will be completed in Unit 9]
