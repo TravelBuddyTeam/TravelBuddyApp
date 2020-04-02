@@ -71,10 +71,110 @@ Digital Wire Frame is complete on figma and available at the following link: htt
 <img src='http://g.recordit.co/LoQXK5SbBA.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Schema 
-[This section will be completed in Unit 9]
+## Schema 
 ### Models
-[Add table of models]
+
+#### User
+
+| Property | Type | Description |
+| -------- | -------- | -------- |
+| username     | string     | unique identifier for user     |
+| password     | string     | password for user     |
+| profileImage    | Image     | profile image for user to display to other users    |
+| defaultLocation | string | default location of user |
+| statusMessage | string | Public status message |
+
+#### Location
+
+| Property | Type | Description |
+| -------- | -------- | ------- |
+| id | Number | Unique id of the location |
+| locationImage     | file     | picture of location    |
+| userImages | Array | Images the user has taken at the location |
+| description     | string     | brief description of location     |
+| visited     | bool     | true if user has visited location     |
+| user    | Pointer to User     | points to the user that visited / plan to visit this location    |
+| address    | String     | address of location    |
+| createdOn | DateTime | Date and time on which the user added this location |
+| visitedOn | DateTime | Date and time on which the user visited the loation |
+
+#### FriendRequest
+
+| Property | Type | Description |
+| ------- | ------ | ------- |
+| fromUser | Pointer to User | User that initiated the request |
+| toUser | Pointer to User | User to whom the request was sent |
+| status | Number | Status (accepted, pending, rejected) |
+| createdOn | DateTime | Date and time on which the request was sent |
+| updatedOn | DateTime | Date and time on which status changed |
+
+#### Message
+
+| Property | Type | Description |
+| --- | --- | --- |
+| id | Number | unique id of this message |
+| fromUser | Pointer to User | User who sent the message |
+| toUser | Pointer to User | User who received the message |
+| message | String | Message content |
+| createdOn | DateTime | Date and time the message was sent |
+| status | int | 0 - not seen, 1 - seen |
+
+#### Reaction
+
+| Property | Type | Description |
+| --- | --- | --- |
+| messageId | Pointer to a message | The message with this reaction |
+| User | Pointer to User | User who reacted to the message |
+| Reaction | Number | 1 - like, 2 - love, 3 - ... etc.|
+
+
+#### Rating
+| Property | Type | Description |
+| --- | --- | --- |
+| user | Pointer to user | The user to whom the rating belongs |
+| rating | Number | Rating of the user |
+| numUsers | Number | The number of users that rated this user |
+
 ### Networking
-- [Add list of network requests by screen ]
+
+**List of Network requests by screen**
+
+
+#### SignUp Screen
+
+- (POST) Create a new User with the provided credentials
+
+#### Login Screen
+
+- (GET) Verify if a user with the provided credentials exit
+
+#### Home Screen
+
+- (GET) Get information about the logged in user
+- (GET) Get users whose location is within some miles of the users current location to display on map
+- (GET) Get public details of the user on which the current user selects on the map
+- (POST) Add a location
+
+#### Locations Screen
+
+- (GET) Get all locations associated with this user
+
+#### Location Screen
+
+- (GET) Get location details added by the current user and other users
+
+
+#### List of Friends Screen
+
+- (GET) Get Friends of the current user
+- (GET) Get Friends of friends of current user (when searching for friends)
+- (GET) Get user that match the provided username (for specific user search)
+
+
+#### Chat Screen
+
+- (GET) Get last 10 chat messages.
+- (POST) Create a message in chat table.
+
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
