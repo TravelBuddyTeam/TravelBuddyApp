@@ -115,7 +115,7 @@ Digital Wire Frame is complete on figma and available at the following link: htt
 | id | Number | unique id of this message |
 | fromUser | Pointer to User | User who sent the message |
 | toUser | Pointer to User | User who received the message |
-| message | String | Message content |
+| text | String | Message content |
 | createdOn | DateTime | Date and time the message was sent |
 | status | int | 0 - not seen, 1 - seen |
 
@@ -143,38 +143,196 @@ Digital Wire Frame is complete on figma and available at the following link: htt
 #### SignUp Screen
 
 - (POST) Create a new User with the provided credentials
+    ```swift
+        let user = PFUser()
+        user.username = usernameField.text
+        user.password = passwordField.text
+        user.defaultLocation = //some location - yet to figure out how to get it
+        
+        user.signUpInBackground { (success, error) in
+            if success {
+                // Transition to home screen
+            } else {
+                // print error
+            }
+        }
+        
+    ```
 
 #### Login Screen
 
 - (GET) Verify if a user with the provided credentials exit
 
+    ```swift
+        let username = usernameField.text!
+        let password = passwordField.text!
+        
+        PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
+            if user != nil {
+                // Transition to home screen
+            } else {
+                // print error
+            }
+        }
+        
+    ```
+
 #### Home Screen
 
-- (GET) Get information about the logged in user
-- (GET) Get users whose location is within some miles of the users current location to display on map
-- (GET) Get public details of the user on which the current user selects on the map
+- (GET) Get users whose locations are within some miles of the current user's location to display on map
+    ```swift
+        // Will figure this out
+    ```
+    
+- (GET) Get public details of the user which the current user selects on the map
+    ```swift
+        let selectedUsername = "some username" // username attributed to the mark on the map
+        let query = PFQuery(className:"User")
+         query.whereKey("username", equalTo: selectedUsername)
+         query.findObjectsInBackground { (selectedUser: PFObject?, error: Error?) in
+            if let error = error { 
+               // print error
+            } else if let selectedUser = selectedUser {
+               // User retrieved
+            }
+         }
+    ```
+    
 - (POST) Add a location
+    ```swift
+        let location = PFObject(className: "Location")
+        
+        location["address"] = "some address"// pull from map
+        location["user"] = PFUser.current()
+        
+        let imageData = // an image, if any, that the map has associated with that location
+        let file = PFFileObject(name: "image.png", data: imageData!)
+        
+        post["locationImage"] = file
+        
+        post.saveInBackground { (success, error) in
+            if success {
+                // alert - location added
+            } else {
+                // print error
+            }
+        }
+    ```
 
 #### Locations Screen
 
 - (GET) Get all locations associated with this user
+    ```swift
+        let query = PFQuery(className:"Location")
+         query.whereKey("user", equalTo: currentUser)
+         query.order(byDescending: "createdOn")
+         query.limit = 20
+         query.findObjectsInBackground { (locations: [PFObject]?, error: Error?) in
+            if let error = error { 
+               // print error
+            } else if let locations = locations {
+               // locations retrieved
+            }
+         }
+    ```
 
 #### Location Screen
 
 - (GET) Get location details added by the current user and other users
+    ```swift
+        let query = PFQuery(className:"Location")
+         query.whereKey("id", equalTo: locationId)
+         query.findObjectsInBackground { (location: PFObject?, error: Error?) in
+            if let error = error { 
+               // print error
+            } else if let location = location {
+               // location retrieved
+            }
+         }
+    ```
 
 
 #### List of Friends Screen
 
 - (GET) Get Friends of the current user
+    ```swift
+        let query1 = PFQuery(className:"FriendRequest")
+         query.whereKey("fromUser", equalTo: currentUser)
+         
+         let query2 = PFQuery(className:"FriendRequest")
+         query.whereKey("toUser", equalTo: currentUser)
+
+         let query = PFQuery.orQuery(withSubqueries: [query1, query2])
+         query.limit = 20
+         query1.order(byAscending: "username")
+        
+         query.findObjectsInBackground { (results: [PFObject]?, error: Error?) in
+             if let error = error {
+                // The request failed
+                print(error.localizedDescription)
+             } else {
+                // In ascending order of username, first 20 friends returned.
+             }
+         }
+         
+    ```
 - (GET) Get Friends of friends of current user (when searching for friends)
-- (GET) Get user that match the provided username (for specific user search)
+    ```swift
+        // Will be needed when searching for friends
+    ```
+- (GET) Get user that matches the provided username (for specific user search)
+    ```swift
+        let usernameSearched = usernameTextView.text
+        let query = PFQuery(className:"User")
+         query.whereKey("username", equalTo: usernameSearched)
+         query.findObjectsInBackground { (foundUser: PFObject?, error: Error?) in
+            if let error = error { 
+               // print error
+            } else if let foundUser = foundUser {
+               // User retrieved
+            }
+         }
+    ```
 
 
 #### Chat Screen
 
 - (GET) Get last 10 chat messages.
+    ```swift
+        let query1 = PFQuery(className:"Message")
+         query.whereKey("fromUser", equalTo: currentUser)
+         
+         let query2 = PFQuery(className:"Message")
+         query.whereKey("toUser", equalTo: currentUser)
+         
+         let query = PFQuery.orQuery(withSubqueries: [query1, query2])
+         query.limit = 10
+         query1.order(byDescending: "createdOn")
+        
+         query.findObjectsInBackground { (results: [PFObject]?, error: Error?) in
+            if let error = error {
+                // The request failed
+                print(error.localizedDescription)
+            } else {
+                // last 10 chat messages in order returned
+            }
+         }
+    ```
+    
 - (POST) Create a message in chat table.
-
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+    ```swift
+        let messageObj = PFObject(className: "Message")
+        
+        message["fromUser"] = PFUser.current()
+        message["toUser"] = selectedUser
+        message["text"] = text
+        message["status"] = 0
+        
+        post.saveInBackground { (success, error) in
+            if success {
+                // alert - message sent
+            } else {
+                // print error
+            }
+        }
+    ```
