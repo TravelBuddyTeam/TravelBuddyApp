@@ -25,8 +25,8 @@ An App for users to interact with people who live in the place they plan on visi
 
 **Required Must-have Stories**
 
-* User must be able to select / search for a particular location and find a list of other users who live in that location
-* User must be able to message people in the location that they are interested in visiting
+- [] User must be able to select / search for a particular location and find a list of other users who live in that location
+- [] User must be able to message people in the location that they are interested in visiting
 * User must be able to login in and sign up
 * User must be able to register as an inhibant of the location in which they live
 * App provides Image and travel information for each location
