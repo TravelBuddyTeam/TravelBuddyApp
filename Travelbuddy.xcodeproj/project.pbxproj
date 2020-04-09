@@ -3,15 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4B38BC80BED93479D6DD5B19 /* Pods_Travelbuddy_TravelbuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FD5BE3E1234C8B10921B2 /* Pods_Travelbuddy_TravelbuddyUITests.framework */; };
 		932A456F7A0705A23ED775A3 /* Pods_TravelbuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9EADF2E3AD8C1502FBCF0 /* Pods_TravelbuddyTests.framework */; };
+		C11713FC243EB07500C3D438 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11713FB243EB07500C3D438 /* LoginViewController.swift */; };
+		C11713FE243EB08800C3D438 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11713FD243EB08800C3D438 /* HomeViewController.swift */; };
 		C197A6B4243CF89E00CFA540 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197A6B3243CF89E00CFA540 /* AppDelegate.swift */; };
 		C197A6B6243CF89E00CFA540 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */; };
-		C197A6B8243CF89E00CFA540 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197A6B7243CF89E00CFA540 /* ViewController.swift */; };
 		C197A6BB243CF89E00CFA540 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C197A6B9243CF89E00CFA540 /* Main.storyboard */; };
 		C197A6BD243CF8A300CFA540 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C197A6BC243CF8A300CFA540 /* Assets.xcassets */; };
 		C197A6C0243CF8A300CFA540 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C197A6BE243CF8A300CFA540 /* LaunchScreen.storyboard */; };
@@ -45,10 +46,11 @@
 		91B25305D97C67CE5873E3ED /* Pods-Travelbuddy-TravelbuddyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travelbuddy-TravelbuddyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Travelbuddy-TravelbuddyUITests/Pods-Travelbuddy-TravelbuddyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		970FD5BE3E1234C8B10921B2 /* Pods_Travelbuddy_TravelbuddyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travelbuddy_TravelbuddyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A9EADF2E3AD8C1502FBCF0 /* Pods_TravelbuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelbuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C11713FB243EB07500C3D438 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C11713FD243EB08800C3D438 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C197A6B0243CF89E00CFA540 /* Travelbuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travelbuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C197A6B3243CF89E00CFA540 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C197A6B7243CF89E00CFA540 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C197A6BA243CF89E00CFA540 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C197A6BC243CF8A300CFA540 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C197A6BF243CF8A300CFA540 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +103,6 @@
 				5110473FAF4DCE4F32E3D575 /* Pods-TravelbuddyTests.debug.xcconfig */,
 				5E904CE39EB2B14876B0969B /* Pods-TravelbuddyTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -132,8 +133,9 @@
 			children = (
 				C197A6B3243CF89E00CFA540 /* AppDelegate.swift */,
 				C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */,
-				C197A6B7243CF89E00CFA540 /* ViewController.swift */,
 				C197A6B9243CF89E00CFA540 /* Main.storyboard */,
+				C11713FB243EB07500C3D438 /* LoginViewController.swift */,
+				C11713FD243EB08800C3D438 /* HomeViewController.swift */,
 				C197A6BC243CF8A300CFA540 /* Assets.xcassets */,
 				C197A6BE243CF8A300CFA540 /* LaunchScreen.storyboard */,
 				C197A6C1243CF8A300CFA540 /* Info.plist */,
@@ -408,9 +410,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C197A6B8243CF89E00CFA540 /* ViewController.swift in Sources */,
+				C11713FC243EB07500C3D438 /* LoginViewController.swift in Sources */,
 				C197A6B4243CF89E00CFA540 /* AppDelegate.swift in Sources */,
 				C197A6B6243CF89E00CFA540 /* SceneDelegate.swift in Sources */,
+				C11713FE243EB08800C3D438 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
