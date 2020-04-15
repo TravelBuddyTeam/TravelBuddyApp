@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -78,10 +78,25 @@
                     <view key="view" contentMode="scaleToFill" id="pei-gP-Whs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fvt-Xe-2qt">
+                                <rect key="frame" x="0.0" y="598" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Home" image="home-icon" id="xFJ-d3-6RY"/>
+                                    <tabBarItem title="Places" image="places-icon" id="xP9-66-iGt"/>
+                                    <tabBarItem title="Friends" image="friends-icon" id="T1o-7B-IYX"/>
+                                    <tabBarItem title="Profile" image="user-icon" id="sDO-JZ-YPh"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Saj-xn-NAB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QLb-Fs-IMv"/>
+                    <navigationItem key="navigationItem" id="QLb-Fs-IMv">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="search-icon" id="6Go-4s-44t"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79D-MM-f84" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,4 +121,11 @@
             <point key="canvasLocation" x="908" y="119.1904047976012"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="friends-icon" width="36" height="25"/>
+        <image name="home-icon" width="31" height="25"/>
+        <image name="places-icon" width="32" height="25"/>
+        <image name="search-icon" width="29" height="25"/>
+        <image name="user-icon" width="41" height="25"/>
+    </resources>
 </document>
