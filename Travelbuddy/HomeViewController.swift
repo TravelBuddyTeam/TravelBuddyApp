@@ -14,6 +14,7 @@ import Parse
 class HomeViewController: UIViewController, CLLocationManagerDelegate,
     MKMapViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var suggestionsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -31,6 +32,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,
         locationManager.distanceFilter = 1
         locationManager.requestWhenInUseAuthorization()
         
+    }
+    
+    private func hideSuggestionTable() {
+        suggestionsTableView.isHidden = true
+    }
+    
+    private func showSuggestionTable() {
+        suggestionsTableView.isHidden = false
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -60,18 +69,24 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
         
+        hideSuggestionTable()
+        
         // find location on map
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // set to show cancel button
         searchBar.showsCancelButton = true
+        
+        // show suggestions table view
+        showSuggestionTable()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
+        hideSuggestionTable()
     }
 
 }

@@ -39,7 +39,7 @@
                                 <rect key="frame" x="39" y="364" width="297" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAf-2r-ccs">
                                 <rect key="frame" x="85" y="468" width="38" height="30"/>
@@ -141,13 +141,23 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits" smartInsertDeleteType="yes"/>
                             </searchBar>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SBV-Lj-cEg">
+                                <rect key="frame" x="25" y="44" width="364" height="250"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="n57-qN-ajv"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Jxx-4g-ATM" firstAttribute="leading" secondItem="Saj-xn-NAB" secondAttribute="leading" id="ARt-0i-vk8"/>
+                            <constraint firstItem="SBV-Lj-cEg" firstAttribute="leading" secondItem="Saj-xn-NAB" secondAttribute="leading" constant="25" id="CBZ-TH-UOy"/>
+                            <constraint firstItem="Saj-xn-NAB" firstAttribute="trailing" secondItem="SBV-Lj-cEg" secondAttribute="trailing" constant="25" id="J56-lu-lFK"/>
                             <constraint firstItem="kGh-ut-Xxc" firstAttribute="leading" secondItem="Saj-xn-NAB" secondAttribute="leading" id="ODn-wk-2tl"/>
                             <constraint firstItem="Jxx-4g-ATM" firstAttribute="bottom" secondItem="Saj-xn-NAB" secondAttribute="bottom" id="jcU-Gj-gQb"/>
                             <constraint firstItem="Jxx-4g-ATM" firstAttribute="top" secondItem="kGh-ut-Xxc" secondAttribute="bottom" id="kE4-yz-ihb"/>
+                            <constraint firstItem="SBV-Lj-cEg" firstAttribute="top" secondItem="kGh-ut-Xxc" secondAttribute="bottom" id="l9E-j8-pfQ"/>
                             <constraint firstItem="kGh-ut-Xxc" firstAttribute="trailing" secondItem="Saj-xn-NAB" secondAttribute="trailing" id="lbt-zT-mz3"/>
                             <constraint firstItem="Jxx-4g-ATM" firstAttribute="trailing" secondItem="Saj-xn-NAB" secondAttribute="trailing" id="taW-zW-P2C"/>
                             <constraint firstItem="kGh-ut-Xxc" firstAttribute="top" secondItem="Saj-xn-NAB" secondAttribute="top" id="uNL-3x-r5w"/>
@@ -161,6 +171,7 @@
                     <connections>
                         <outlet property="mapView" destination="Jxx-4g-ATM" id="Cx2-S1-Vsd"/>
                         <outlet property="searchBar" destination="kGh-ut-Xxc" id="Zk7-K7-ERR"/>
+                        <outlet property="suggestionsTableView" destination="SBV-Lj-cEg" id="eNM-dk-JqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79D-MM-f84" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
