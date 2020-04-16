@@ -12,7 +12,7 @@ import CoreLocation
 import Parse
 
 class HomeViewController: UIViewController, CLLocationManagerDelegate,
-    MKMapViewDelegate, UISearchBarDelegate {
+MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var suggestionsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -21,10 +21,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,
     var locationManager : CLLocationManager!
     var lastLocation : CLLocationCoordinate2D!
     
+    var suggestions:[MKMapItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         searchBar.delegate = self
+        suggestionsTableView.delegate = self
+        suggestionsTableView.dataSource = self
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -62,6 +66,23 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // give suggestions
+        let searchBarText = searchBar.text
+        
+        let suggestionsRequest = MKLocalSearch.Request()
+        suggestionsRequest.naturalLanguageQuery = searchBarText
+        suggestionsRequest.region = mapView.region
+        let search = MKLocalSearch(request: suggestionsRequest)
+        
+        search.start { (response, error) in
+            guard let response = response else {
+                return
+            }
+            
+            self.suggestions = response.mapItems
+            self.suggestionsTableView.reloadData()
+            
+//            self.suggestionsTableView.frame = CGRect(x: self.suggestionsTableView.frame.maxX, y: self.suggestionsTableView.frame.maxY, width: self.suggestionsTableView.frame.width, height: CGFloat(self.suggestions.count * 100))
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -87,6 +108,21 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
         hideSuggestionTable()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return suggestions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "suggestionCell", for: indexPath) as! SuggestionCell
+        
+        let suggestion = suggestions[indexPath.row].placemark
+        cell.locationNameLabel.text = suggestion.name
+        
+        cell.locationAddressLabel.text = "\(suggestion.thoroughfare ?? "") \(suggestion.locality ?? "") \(suggestion.subLocality ?? "") \(suggestion.administrativeArea ?? "") \(suggestion.postalCode ?? "") \(suggestion.country ?? "")"
+        
+        return cell
     }
 
 }

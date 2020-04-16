@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		182E650E2447CE8A007AA1DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182E650D2447CE8A007AA1DB /* MapKit.framework */; };
 		182E65102447DCF2007AA1DB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182E650F2447DCF2007AA1DB /* CoreLocation.framework */; };
+		182E651224480B70007AA1DB /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E651124480B70007AA1DB /* SuggestionCell.swift */; };
 		4B38BC80BED93479D6DD5B19 /* Pods_Travelbuddy_TravelbuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FD5BE3E1234C8B10921B2 /* Pods_Travelbuddy_TravelbuddyUITests.framework */; };
 		932A456F7A0705A23ED775A3 /* Pods_TravelbuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9EADF2E3AD8C1502FBCF0 /* Pods_TravelbuddyTests.framework */; };
 		C11713FC243EB07500C3D438 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11713FB243EB07500C3D438 /* LoginViewController.swift */; };
@@ -44,6 +45,7 @@
 		17CDD2DD2FB48476DEE3D306 /* Pods-Travelbuddy-TravelbuddyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travelbuddy-TravelbuddyUITests.release.xcconfig"; path = "Target Support Files/Pods-Travelbuddy-TravelbuddyUITests/Pods-Travelbuddy-TravelbuddyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		182E650D2447CE8A007AA1DB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		182E650F2447DCF2007AA1DB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		182E651124480B70007AA1DB /* SuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCell.swift; sourceTree = "<group>"; };
 		5110473FAF4DCE4F32E3D575 /* Pods-TravelbuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelbuddyTests.debug.xcconfig"; path = "Target Support Files/Pods-TravelbuddyTests/Pods-TravelbuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E904CE39EB2B14876B0969B /* Pods-TravelbuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelbuddyTests.release.xcconfig"; path = "Target Support Files/Pods-TravelbuddyTests/Pods-TravelbuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117CBF64C3A451B4ED8966A /* Pods-Travelbuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travelbuddy.release.xcconfig"; path = "Target Support Files/Pods-Travelbuddy/Pods-Travelbuddy.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				C197A6B3243CF89E00CFA540 /* AppDelegate.swift */,
 				C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */,
 				C197A6B9243CF89E00CFA540 /* Main.storyboard */,
+				182E651124480B70007AA1DB /* SuggestionCell.swift */,
 				C11713FB243EB07500C3D438 /* LoginViewController.swift */,
 				C11713FD243EB08800C3D438 /* HomeViewController.swift */,
 				C197A6BC243CF8A300CFA540 /* Assets.xcassets */,
@@ -421,6 +424,7 @@
 				C11713FC243EB07500C3D438 /* LoginViewController.swift in Sources */,
 				C197A6B4243CF89E00CFA540 /* AppDelegate.swift in Sources */,
 				C197A6B6243CF89E00CFA540 /* SceneDelegate.swift in Sources */,
+				182E651224480B70007AA1DB /* SuggestionCell.swift in Sources */,
 				C11713FE243EB08800C3D438 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
