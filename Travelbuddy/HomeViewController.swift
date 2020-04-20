@@ -22,6 +22,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     var lastLocation : CLLocationCoordinate2D!
     
     var suggestions:[MKMapItem] = []
+    var annotations:[MKAnnotation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,9 +81,14 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
             
             self.suggestions = response.mapItems
             self.suggestionsTableView.reloadData()
-            
-//            self.suggestionsTableView.frame = CGRect(x: self.suggestionsTableView.frame.maxX, y: self.suggestionsTableView.frame.maxY, width: self.suggestionsTableView.frame.width, height: CGFloat(self.suggestions.count * 100))
         }
+        
+        self.suggestionsTableView.frame = CGRect(
+            x: self.suggestionsTableView.frame.maxX,
+            y: self.suggestionsTableView.frame.maxY,
+            width: self.suggestionsTableView.frame.width,
+            height: CGFloat()
+        )
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -91,7 +97,6 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         searchBar.resignFirstResponder()
         
         hideSuggestionTable()
-        
         // find location on map
     }
     
@@ -108,6 +113,8 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
         hideSuggestionTable()
+        suggestions.removeAll()
+        suggestionsTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,9 +127,58 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         let suggestion = suggestions[indexPath.row].placemark
         cell.locationNameLabel.text = suggestion.name
         
-        cell.locationAddressLabel.text = "\(suggestion.thoroughfare ?? "") \(suggestion.locality ?? "") \(suggestion.subLocality ?? "") \(suggestion.administrativeArea ?? "") \(suggestion.postalCode ?? "") \(suggestion.country ?? "")"
+        cell.locationAddressLabel.text = "\(suggestion.thoroughfare == nil ? "" : suggestion.thoroughfare! + ", ")\(suggestion.subLocality == nil ? "" : suggestion.subLocality! + ", ")\(suggestion.locality == nil ? "" : suggestion.locality! + ", ")\(suggestion.administrativeArea == nil ? "" : suggestion.administrativeArea! + " ")\(suggestion.postalCode == nil ? "" : suggestion.postalCode! + ", ") \(suggestion.country == nil ? "" : suggestion.country!)"
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // show the location selected
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectedSuggestion = suggestions[indexPath.row].placemark
+        
+        // Get chosen location and show on map
+        let location = selectedSuggestion.coordinate
+        let mapSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: location, span: mapSpan)
+        mapView.setRegion(region, animated: true)
+        
+        // remove all anotations before adding
+        mapView.removeAnnotations(annotations)
+        annotations.removeAll()
+        
+        // Add annotation
+        let travelLocationAnnotation = TravelLocationAnnotation(
+            title: "Add to Travel locations?",
+            subtitle: selectedSuggestion.name,
+            coordinate: location
+        )
+        mapView.addAnnotation(travelLocationAnnotation)
+        annotations.append(travelLocationAnnotation)
+        
+        hideSuggestionTable()
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
+        // create annotation view
+        if annotation.isKind(of: TravelLocationAnnotation.self) {
+            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
 
+            annotationView.pinTintColor = UIColor.red
+            annotationView.canShowCallout = true
+            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+            return annotationView
+        }
+
+        return nil
+    }
 }
