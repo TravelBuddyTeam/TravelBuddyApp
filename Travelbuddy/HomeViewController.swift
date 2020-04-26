@@ -140,7 +140,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         
         // Get chosen location and show on map
         let location = selectedSuggestion.coordinate
-        let mapSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let mapSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
         let region = MKCoordinateRegion(center: location, span: mapSpan)
         mapView.setRegion(region, animated: true)
         
@@ -174,11 +174,19 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
 
             annotationView.pinTintColor = UIColor.red
             annotationView.canShowCallout = true
-            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            let button = UIButton(type: .contactAdd)
+            button.addTarget(self, action: #selector(HomeViewController.AddLocation(sender:)), for: .touchUpInside)
+            annotationView.rightCalloutAccessoryView = button
             
             return annotationView
         }
 
         return nil
+    }
+    
+    @objc func AddLocation(sender: UIButton) {
+        // Add location coordinate to database
+        let view = sender.superview
+        view?.removeFromSuperview()
     }
 }
