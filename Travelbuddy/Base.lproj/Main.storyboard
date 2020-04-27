@@ -145,7 +145,7 @@
         <!--Profile-->
         <scene sceneID="aFV-Qf-2mr">
             <objects>
-                <viewController id="2bS-8P-huE" sceneMemberID="viewController">
+                <viewController id="2bS-8P-huE" customClass="profileViewController" customModule="Travelbuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ULH-Zg-0aD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,7 +192,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mKO-QL-ZCv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_image" translatesAutoresizingMaskIntoConstraints="NO" id="mKO-QL-ZCv">
                                 <rect key="frame" x="63" y="48" width="288" height="316"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -201,6 +201,11 @@
                         <viewLayoutGuide key="safeArea" id="8qB-sg-k9a"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="user-icon" id="jya-cP-SJh"/>
+                    <connections>
+                        <outlet property="friendsCountLabel" destination="AmR-WW-J0i" id="h1H-vZ-rSd"/>
+                        <outlet property="locationsCountLabel" destination="ksL-Tn-XKo" id="17H-4D-65K"/>
+                        <outlet property="userNameLabel" destination="Ieg-v9-G9H" id="sOB-Mn-xfT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2v8-oi-VJH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -567,6 +572,7 @@
         <image name="photo" catalog="system" width="64" height="46"/>
         <image name="photo.on.rectangle" catalog="system" width="64" height="48"/>
         <image name="places-icon" width="32" height="25"/>
+        <image name="profile_image" width="640" height="640"/>
         <image name="search-icon" width="29" height="25"/>
         <image name="user-icon" width="41" height="25"/>
     </resources>
