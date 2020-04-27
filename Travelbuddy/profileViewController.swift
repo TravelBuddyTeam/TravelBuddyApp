@@ -24,7 +24,7 @@ class profileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let currentUser = PFUser.current()
         
         userNameLabel.text = currentUser?.username
-        //friendsCountLabel.text = currentUser?.friendsCount as? String
+        //friendsCountLabel.text = currentUser.friendsCount
         //locationsCountLabel.text = currentUser?.locationsCount as? String
         
         // Do any additional setup after loading the view.
