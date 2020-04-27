@@ -11,12 +11,16 @@ import MapKit
 
 class UsersLocationAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
-    let title: String?
+    var title: String?
     
     init(title: String?, coordinate: CLLocationCoordinate2D) {
         self.title = title
         self.coordinate = coordinate
         
         super.init()
+    }
+    
+    func SetTitle(newTitle: String) {
+        title = newTitle
     }
 }

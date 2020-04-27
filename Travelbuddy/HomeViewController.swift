@@ -20,6 +20,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     
     var locationManager : CLLocationManager!
     var lastLocation : CLLocationCoordinate2D!
+    var chosenSuggestion : MKPlacemark!
     
     var suggestions:[MKMapItem] = []
     var annotations:[MKAnnotation] = []
@@ -30,7 +31,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         searchBar.delegate = self
         suggestionsTableView.delegate = self
         suggestionsTableView.dataSource = self
-
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -50,6 +51,16 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let annotations = [mapView.userLocation]
         mapView.showAnnotations(annotations, animated: false)
+        
+        // store users location
+        let geoPoint = PFGeoPoint(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        
+        if let currentUser = PFUser.current(){
+            if (currentUser.value(forKey: "location") == nil) {
+                currentUser["location"] = geoPoint
+                currentUser.saveInBackground()
+            }
+        }
     }
     
     private func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -61,8 +72,6 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         let location = locations.first as? CLLocation
         lastLocation = location?.coordinate
-        
-        // store users location
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -137,7 +146,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: true)
         
         let selectedSuggestion = suggestions[indexPath.row].placemark
-        
+        chosenSuggestion = selectedSuggestion
         // Get chosen location and show on map
         let location = selectedSuggestion.coordinate
         let mapSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
@@ -161,6 +170,8 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         searchBar.text = ""
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
+        
+        // find users around the location
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -188,5 +199,16 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         // Add location coordinate to database
         let view = sender.superview
         view?.removeFromSuperview()
+        
+        let address = "\(chosenSuggestion.thoroughfare == nil ? "" : chosenSuggestion.thoroughfare! + ", ")\(chosenSuggestion.subLocality == nil ? "" : chosenSuggestion.subLocality! + ", ")\(chosenSuggestion.locality == nil ? "" : chosenSuggestion.locality! + ", ")\(chosenSuggestion.administrativeArea == nil ? "" : chosenSuggestion.administrativeArea! + " ")\(chosenSuggestion.postalCode == nil ? "" : chosenSuggestion.postalCode! + ", ") \(chosenSuggestion.country == nil ? "" : chosenSuggestion.country!)"
+        
+        let location = PFObject(className: "Location")
+        location["visited"] = false;
+        location["user"] = PFUser.current()
+        location["coordinate"] = PFGeoPoint(latitude: chosenSuggestion.coordinate.latitude, longitude: chosenSuggestion.coordinate.longitude)
+        location["address"] = address
+        location["createdOn"] = Date()
+        location.saveInBackground()
+        
     }
 }

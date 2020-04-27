@@ -12,7 +12,7 @@ import MapKit
 class TravelLocationAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     let subtitle: String?
-    let title: String?
+    var title: String?
     
     init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D) {
         self.title = title
@@ -20,5 +20,9 @@ class TravelLocationAnnotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
         
         super.init()
+    }
+    
+    func SetTitle(newTitle: String) {
+        title = newTitle
     }
 }
