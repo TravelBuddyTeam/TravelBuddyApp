@@ -20,6 +20,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         
         locationsTableView.dataSource = self
         locationsTableView.delegate = self
+        //locationsTableView.rowHeight = UITableView.automaticDimension
         
         GetLocations()
     }
@@ -68,7 +69,16 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         
+        if segue.identifier == "locationDetailViewControllerSegue" {
+            let cell = sender as! UITableViewCell
+            let indexPath = locationsTableView.indexPath(for: cell)
+            if  indexPath != nil {
+                let destinationNavigationController = segue.destination as! UINavigationController
+                let detailsViewController = destinationNavigationController.topViewController as! LocationDetailsViewController
+                
+                detailsViewController.location = travelLocations[indexPath!.row]
+            }
+        }
     }
 
 }

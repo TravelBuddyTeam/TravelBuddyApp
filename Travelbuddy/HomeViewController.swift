@@ -22,6 +22,8 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     var lastLocation : CLLocationCoordinate2D!
     var chosenSuggestion : MKPlacemark!
     
+    var createdLocation : PFObject!
+    
     var suggestions:[MKMapItem] = []
     var annotations:[MKAnnotation] = []
     
@@ -211,5 +213,20 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         location["name"] = chosenSuggestion.name
         location["synopsis"] = chosenSuggestion.description
         location.saveInBackground()
+        
+        // store created location for segue access
+        createdLocation = location
+        
+        // perform segue to locations
+        performSegue(withIdentifier: "mapToLocationSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapToLocationSegue" {
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let detailsViewController = destinationNavigationController.topViewController as! LocationDetailsViewController
+            
+            detailsViewController.location = createdLocation
+        }
     }
 }
