@@ -208,7 +208,8 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         location["coordinate"] = PFGeoPoint(latitude: chosenSuggestion.coordinate.latitude, longitude: chosenSuggestion.coordinate.longitude)
         location["address"] = address
         location["createdOn"] = Date()
+        location["name"] = chosenSuggestion.name
+        location["synopsis"] = chosenSuggestion.description
         location.saveInBackground()
-        
     }
 }
