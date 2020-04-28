@@ -154,7 +154,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         chosenSuggestion = selectedSuggestion
         // Get chosen location and show on map
         let location = selectedSuggestion.coordinate
-        let mapSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+        let mapSpan = MKCoordinateSpan(latitudeDelta: 0.07, longitudeDelta: 0.07)
         let region = MKCoordinateRegion(center: location, span: mapSpan)
         mapView.setRegion(region, animated: true)
         
@@ -186,31 +186,32 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     }
     
     func GetUsersInRadius(radius : Double, pivot : PFGeoPoint) {
-        let query = PFQuery(className:"User")
-        //query.whereKey("location", nearGeoPoint: pivot, withinMiles: radius)
-        query.whereKey("username", equalTo: "diddy")
+        let query = PFQuery(className:"_User")
+        query.whereKey("location", nearGeoPoint: pivot, withinMiles: radius)
+        query.whereKey("username", notEqualTo: (PFUser.current()?.username)! as String)
+        //query.whereKey("username", equalTo: "diddy")
         print("Pivot: latitude: \(pivot.latitude) longitude: \(pivot.longitude)")
         query.findObjectsInBackground { (users: [PFObject]?, error: Error?) in
             if users != nil {
-//                self.nearByUsers = users
+                self.nearByUsers = users
                 print("Total nearby Users: \(users!.count)")
-//
-//                for user in self.nearByUsers {
-//                    // Add user annotation
-//
-//                    let username = user.value(forKey: "username") as? String
-//                    let userLocation = user.value(forKey: "location") as? PFGeoPoint
-//                    let coordinate = CLLocationCoordinate2D(latitude: userLocation!.latitude, longitude: userLocation!.longitude)
-//
-//                    // Add annotation
-//                    let userLocationAnnotation = UsersLocationAnnotation(
-//                        title: username,
-//                        subtitle: "Travel Buddy (default status message)",
-//                        coordinate: coordinate
-//                    )
-//                    self.mapView.addAnnotation(userLocationAnnotation)
-//                    self.usersAnnotations.append(userLocationAnnotation)
-//                }
+
+                for user in self.nearByUsers {
+                     //Add user annotation
+
+                    let username = user.value(forKey: "username") as? String
+                    let userLocation = user.value(forKey: "location") as? PFGeoPoint
+                    let coordinate = CLLocationCoordinate2D(latitude: userLocation!.latitude, longitude: userLocation!.longitude)
+
+                    // Add annotation
+                    let userLocationAnnotation = UsersLocationAnnotation(
+                        title: username,
+                        subtitle: "Travel Buddy (default status message)",
+                        coordinate: coordinate
+                    )
+                    self.mapView.addAnnotation(userLocationAnnotation)
+                    self.usersAnnotations.append(userLocationAnnotation)
+                }
             } else {
                 print("Error: \(error?.localizedDescription ?? "unknown")")
             }
