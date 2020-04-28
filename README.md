@@ -32,12 +32,11 @@ An App for users to interact with people who live in the place they plan on visi
 - [x] User must be able to select / search for a particular location and find a list of other users who live in that location
 - [ ] User must be able to message people in the location that they are interested in visiting
 - [X] User must be able to login in and sign up
-- [ ] User must be able to register as an inhibant of the location in which they live
-- [ ] App provides Image and travel information for each location
+- [x] App provides travel information for each location
 - [ ] User can rate the person they messaged based on how helpful they were - higher rating for a user allows them access to perks and rewards
 
 **Optional Nice-to-have Stories**
-
+- [ ] User must be able to register as an inhibant of the location in which they live
 - [ ] User must be able to view and edit profile by clicking image of themselves in the top right hand corner of the screen
 - [ ] Allow users to add their location if it is not available on the app
 
