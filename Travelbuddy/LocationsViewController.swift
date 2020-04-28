@@ -21,10 +21,15 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         locationsTableView.dataSource = self
         locationsTableView.delegate = self
         
+        
         GetLocations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        GetLocations()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         GetLocations()
     }
     
@@ -51,15 +56,24 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = locationsTableView.dequeueReusableCell(withIdentifier: "LocationsTableViewCell") as! LocationsTableViewCell
         
+        let location = travelLocations[indexPath.row]
         //set values in cell
-        cell.locationNameLabel.text = travelLocations[indexPath.row].value(forKey: "name") as? String
-        cell.locationDescriptionLabel.text = travelLocations[indexPath.row].value(forKey: "synopsis") as? String
+        cell.locationNameLabel.text = location.value(forKey: "name") as? String
+        cell.locationDescriptionLabel.text = location.value(forKey: "synopsis") as? String
         
         cell.location = travelLocations[indexPath.row]
         
-        let visited = travelLocations[indexPath.row].value(forKey: "visited") as! Bool
+        let visited = location.value(forKey: "visited") as! Bool
         
         cell.updateButton(visited: visited)
+        
+        if location.value(forKey: "locationImage") != nil {
+            let imageFile = location.value(forKey: "locationImage") as! PFFileObject
+            let imageUrlString = imageFile.url!
+            let imageUrl = URL(string: imageUrlString)!
+            cell.locationImageView.af_setImage(withURL: imageUrl)
+        }
+        
         return cell
     }
     
@@ -68,7 +82,16 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         
+        if segue.identifier == "locationDetailViewControllerSegue" {
+            let cell = sender as! UITableViewCell
+            let indexPath = locationsTableView.indexPath(for: cell)
+            if  indexPath != nil {
+                let destinationNavigationController = segue.destination as! UINavigationController
+                let detailsViewController = destinationNavigationController.topViewController as! LocationDetailsViewController
+                
+                detailsViewController.location = travelLocations[indexPath!.row]
+            }
+        }
     }
 
 }
