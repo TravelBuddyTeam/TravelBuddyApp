@@ -18,6 +18,7 @@ class LocationDetailsViewController: UIViewController, UIImagePickerControllerDe
     var initialY: CGFloat!
     var offset: CGFloat!
     
+    @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var fieldsSuperView: UIView!
     @IBOutlet weak var heroLocationImageView: UIImageView!
     @IBOutlet weak var locationNameTextField: UITextField!
@@ -27,6 +28,8 @@ class LocationDetailsViewController: UIViewController, UIImagePickerControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateButton.layer.cornerRadius = 15
 
         // Do any additional setup after loading the view.
         FillData()

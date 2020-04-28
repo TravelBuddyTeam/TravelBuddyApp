@@ -620,11 +620,11 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdR-Rp-1zK">
-                                <rect key="frame" x="167" y="676" width="80" height="30"/>
+                                <rect key="frame" x="107" y="676" width="200" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5TT-ne-JpI"/>
-                                    <constraint firstAttribute="width" constant="80" id="pn8-g0-YAN"/>
+                                    <constraint firstAttribute="width" constant="200" id="pn8-g0-YAN"/>
                                 </constraints>
                                 <state key="normal" title="Update">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -662,6 +662,7 @@
                         <outlet property="locationDescriptionTextField" destination="cWc-c9-9qf" id="l5k-LK-raq"/>
                         <outlet property="locationNameTextField" destination="gK4-Vh-ZvY" id="R6p-wr-fSt"/>
                         <outlet property="locationVisitedSegmentedControl" destination="edt-48-bqN" id="y4B-Lb-fhY"/>
+                        <outlet property="updateButton" destination="IdR-Rp-1zK" id="Pzf-fi-Hp3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krf-D4-3eS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
