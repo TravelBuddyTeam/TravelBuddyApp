@@ -12,6 +12,7 @@ An App for users to interact with people who live in the place they plan on visi
 
 ### Current Progress
 <img src="http://g.recordit.co/zY2ZK9GbhI.gif" width=250><br>
+<img src="http://g.recordit.co/KsphHBwpHk.gif" width=250><br>
 
 ### App Evaluation
 [Evaluation of your app across the following attributes]
@@ -28,7 +29,7 @@ An App for users to interact with people who live in the place they plan on visi
 
 **Required Must-have Stories**
 
-- [ ] User must be able to select / search for a particular location and find a list of other users who live in that location
+- [x] User must be able to select / search for a particular location and find a list of other users who live in that location
 - [ ] User must be able to message people in the location that they are interested in visiting
 - [X] User must be able to login in and sign up
 - [ ] User must be able to register as an inhibant of the location in which they live
