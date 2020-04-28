@@ -33,12 +33,12 @@ class LocationsTableViewCell: UITableViewCell {
     func updateButton (visited: Bool) {
         if visited {
             // change UI
-            visitedButton.backgroundColor = UIColor.systemGreen
-            visitedButton.setTitle("Mark Not Visited", for: .normal)
+            let visitedbuttonImage = UIImage(named: "green-checkmark.png")
+            visitedButton.setImage(visitedbuttonImage, for: .normal)
         } else {
             // change UI
-            visitedButton.backgroundColor = UIColor.lightGray
-            visitedButton.setTitle("Mark Visited", for: .normal)
+            let visitedbuttonImage = UIImage(named: "red-circle.png")
+            visitedButton.setImage(visitedbuttonImage, for: .normal)
         }
     }
 

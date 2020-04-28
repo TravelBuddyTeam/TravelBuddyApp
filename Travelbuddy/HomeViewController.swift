@@ -25,7 +25,10 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     var createdLocation : PFObject!
     
     var suggestions:[MKMapItem] = []
-    var annotations:[MKAnnotation] = []
+    var locationAnnotations:[TravelLocationAnnotation] = []
+    var usersAnnotations:[UsersLocationAnnotation] = []
+    
+    var nearByUsers : [PFObject]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,18 +158,20 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         let region = MKCoordinateRegion(center: location, span: mapSpan)
         mapView.setRegion(region, animated: true)
         
-        // remove all anotations before adding
-        mapView.removeAnnotations(annotations)
-        annotations.removeAll()
+        // remove all location anotations before adding
+        mapView.removeAnnotations(locationAnnotations)
+        mapView.removeAnnotations(usersAnnotations)
+        usersAnnotations.removeAll()
+        locationAnnotations.removeAll()
         
         // Add annotation
         let travelLocationAnnotation = TravelLocationAnnotation(
-            title: "Add to Travel locations?",
+            title: "Travel To",
             subtitle: selectedSuggestion.name,
             coordinate: location
         )
         mapView.addAnnotation(travelLocationAnnotation)
-        annotations.append(travelLocationAnnotation)
+        locationAnnotations.append(travelLocationAnnotation)
         
         hideSuggestionTable()
         searchBar.text = ""
@@ -174,6 +179,42 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         searchBar.resignFirstResponder()
         
         // find users around the location
+        let radiusUsers = 50.0 // in mile
+        let locationGeoPoint = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
+        
+        GetUsersInRadius(radius: radiusUsers, pivot: locationGeoPoint)
+    }
+    
+    func GetUsersInRadius(radius : Double, pivot : PFGeoPoint) {
+        let query = PFQuery(className:"User")
+        //query.whereKey("location", nearGeoPoint: pivot, withinMiles: radius)
+        query.whereKey("username", equalTo: "diddy")
+        print("Pivot: latitude: \(pivot.latitude) longitude: \(pivot.longitude)")
+        query.findObjectsInBackground { (users: [PFObject]?, error: Error?) in
+            if users != nil {
+//                self.nearByUsers = users
+                print("Total nearby Users: \(users!.count)")
+//
+//                for user in self.nearByUsers {
+//                    // Add user annotation
+//
+//                    let username = user.value(forKey: "username") as? String
+//                    let userLocation = user.value(forKey: "location") as? PFGeoPoint
+//                    let coordinate = CLLocationCoordinate2D(latitude: userLocation!.latitude, longitude: userLocation!.longitude)
+//
+//                    // Add annotation
+//                    let userLocationAnnotation = UsersLocationAnnotation(
+//                        title: username,
+//                        subtitle: "Travel Buddy (default status message)",
+//                        coordinate: coordinate
+//                    )
+//                    self.mapView.addAnnotation(userLocationAnnotation)
+//                    self.usersAnnotations.append(userLocationAnnotation)
+//                }
+            } else {
+                print("Error: \(error?.localizedDescription ?? "unknown")")
+            }
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -181,7 +222,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         if annotation.isKind(of: MKUserLocation.self) {
             return nil
         }
-        // create annotation view
+        // create locations annotation view
         if annotation.isKind(of: TravelLocationAnnotation.self) {
             let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
 
@@ -189,6 +230,18 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
             annotationView.canShowCallout = true
             let button = UIButton(type: .contactAdd)
             button.addTarget(self, action: #selector(HomeViewController.AddLocation(sender:)), for: .touchUpInside)
+            annotationView.rightCalloutAccessoryView = button
+            
+            return annotationView
+        }
+        
+        // create users annotation view
+        if annotation.isKind(of: UsersLocationAnnotation.self) {
+            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "userPin")
+
+            annotationView.pinTintColor = UIColor.green
+            annotationView.canShowCallout = true
+            let button = UIButton(type: .detailDisclosure)
             annotationView.rightCalloutAccessoryView = button
             
             return annotationView
