@@ -21,6 +21,7 @@
 		C11713FE243EB08800C3D438 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11713FD243EB08800C3D438 /* HomeViewController.swift */; };
 		C134AE34244D337400D3EE4E /* LocationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134AE33244D337400D3EE4E /* LocationsTableViewCell.swift */; };
 		C134AE36244D339200D3EE4E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134AE35244D339200D3EE4E /* FriendsTableViewCell.swift */; };
+		C137349524588E66007455F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C137349424588E66007455F7 /* ChatViewController.swift */; };
 		C197A6B4243CF89E00CFA540 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197A6B3243CF89E00CFA540 /* AppDelegate.swift */; };
 		C197A6B6243CF89E00CFA540 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */; };
 		C197A6BB243CF89E00CFA540 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C197A6B9243CF89E00CFA540 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		C11713FD243EB08800C3D438 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C134AE33244D337400D3EE4E /* LocationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsTableViewCell.swift; sourceTree = "<group>"; };
 		C134AE35244D339200D3EE4E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		C137349424588E66007455F7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C197A6B0243CF89E00CFA540 /* Travelbuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travelbuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C197A6B3243CF89E00CFA540 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				C197A6B3243CF89E00CFA540 /* AppDelegate.swift */,
 				C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */,
 				C197A6B9243CF89E00CFA540 /* Main.storyboard */,
+				C137349424588E66007455F7 /* ChatViewController.swift */,
 				C1D141D92457412A0092EB3B /* profileViewController.swift */,
 				186B8B462456AA960078A581 /* LocationDetailsViewController.swift */,
 				C134AE35244D339200D3EE4E /* FriendsTableViewCell.swift */,
@@ -455,6 +458,7 @@
 				1862FD6A244957A000486AB9 /* TravelLocationAnnotation.swift in Sources */,
 				182E651224480B70007AA1DB /* SuggestionCell.swift in Sources */,
 				C10E5124244D2FD500BB05B0 /* FriendsViewController.swift in Sources */,
+				C137349524588E66007455F7 /* ChatViewController.swift in Sources */,
 				C11713FE243EB08800C3D438 /* HomeViewController.swift in Sources */,
 				C134AE34244D337400D3EE4E /* LocationsTableViewCell.swift in Sources */,
 				C10E5122244D2CA200BB05B0 /* LocationsViewController.swift in Sources */,

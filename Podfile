@@ -8,7 +8,8 @@ target 'Travelbuddy' do
   # Pods for Travelbuddy
   pod "Parse"
   pod "AlamofireImage"
-
+  pod 'MessageKit'
+  pod 'Scaledrone'
 
   target 'TravelbuddyTests' do
     inherit! :search_paths
