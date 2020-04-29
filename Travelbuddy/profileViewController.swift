@@ -14,8 +14,6 @@ class profileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var locationsCountLabel: UILabel!
-    @IBOutlet weak var friendsCountLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     
     override func viewDidLoad() {
@@ -24,10 +22,12 @@ class profileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let currentUser = PFUser.current()
         
         userNameLabel.text = currentUser?.username
-        //friendsCountLabel.text = currentUser.friendsCount
-        //locationsCountLabel.text = currentUser?.locationsCount as? String
-        
-        // Do any additional setup after loading the view.
+
+    }
+    
+    @IBAction func onLogoutButton(_ sender: Any) {
+        PFUser.logOut()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onProfileImage(_ sender: Any) {
