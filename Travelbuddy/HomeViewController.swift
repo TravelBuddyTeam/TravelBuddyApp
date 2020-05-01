@@ -29,6 +29,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     var usersAnnotations:[UsersLocationAnnotation] = []
     
     var nearByUsers : [PFObject]!
+    var selectedUser : PFObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,6 +171,8 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
             subtitle: selectedSuggestion.name,
             coordinate: location
         )
+        //print("latitude: \(location.latitude) longitude: \(location.longitude)")
+
         mapView.addAnnotation(travelLocationAnnotation)
         locationAnnotations.append(travelLocationAnnotation)
         
@@ -179,7 +182,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         searchBar.resignFirstResponder()
         
         // find users around the location
-        let radiusUsers = 50.0 // in mile
+        let radiusUsers = 20.0 // in mile
         let locationGeoPoint = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
         
         GetUsersInRadius(radius: radiusUsers, pivot: locationGeoPoint)
@@ -190,7 +193,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
         query.whereKey("location", nearGeoPoint: pivot, withinMiles: radius)
         query.whereKey("username", notEqualTo: (PFUser.current()?.username)! as String)
         //query.whereKey("username", equalTo: "diddy")
-        print("Pivot: latitude: \(pivot.latitude) longitude: \(pivot.longitude)")
+        
         query.findObjectsInBackground { (users: [PFObject]?, error: Error?) in
             if users != nil {
                 self.nearByUsers = users
@@ -202,13 +205,23 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
                     let username = user.value(forKey: "username") as? String
                     let userLocation = user.value(forKey: "location") as? PFGeoPoint
                     let coordinate = CLLocationCoordinate2D(latitude: userLocation!.latitude, longitude: userLocation!.longitude)
-
+                    
+                    var profileImageUrl : URL!
+                    
+                    if user.value(forKey: "profileImage") != nil {
+                        let imageFile = user.value(forKey: "profileImage") as! PFFileObject
+                        let imageUrlString = imageFile.url!
+                        profileImageUrl = URL(string: imageUrlString)!
+                    }
+                    
                     // Add annotation
                     let userLocationAnnotation = UsersLocationAnnotation(
                         title: username,
                         subtitle: "Travel Buddy (default status message)",
-                        coordinate: coordinate
+                        coordinate: coordinate,
+                        profileImageUrl: profileImageUrl
                     )
+
                     self.mapView.addAnnotation(userLocationAnnotation)
                     self.usersAnnotations.append(userLocationAnnotation)
                 }
@@ -220,11 +233,8 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if annotation.isKind(of: MKUserLocation.self) {
-            return nil
-        }
-        // create locations annotation view
         if annotation.isKind(of: TravelLocationAnnotation.self) {
+            // create locations annotation view
             let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
 
             annotationView.pinTintColor = UIColor.red
@@ -234,21 +244,49 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
             annotationView.rightCalloutAccessoryView = button
             
             return annotationView
-        }
-        
-        // create users annotation view
-        if annotation.isKind(of: UsersLocationAnnotation.self) {
+            
+        } else if annotation.isKind(of: UsersLocationAnnotation.self) {
+            let userAnnotation = annotation as! UsersLocationAnnotation
+
+            // create users annotation view
             let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "userPin")
 
             annotationView.pinTintColor = UIColor.green
             annotationView.canShowCallout = true
             let button = UIButton(type: .detailDisclosure)
+            button.addTarget(self, action: #selector(HomeViewController.SeeNearbyUserProfile(sender:)), for: .touchUpInside)
             annotationView.rightCalloutAccessoryView = button
+            // Add profile image as left accessory
+            let profileImage = UIImageView(frame: CGRect(x: 30, y: 30, width: 50, height: 50))
+            profileImage.contentMode = UIView.ContentMode.scaleToFill
+            profileImage.af_setImage(withURL: userAnnotation.profileImageUrl, placeholderImage: UIImage(named: "person"))
+            annotationView.leftCalloutAccessoryView = profileImage
             
             return annotationView
         }
 
+        // Any other annotation (like user annotation)
         return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let annotation = view.annotation
+        
+        if view.reuseIdentifier == "userPin" {
+            let userAnnotation = annotation as! UsersLocationAnnotation
+            // find the user
+            for user in nearByUsers {
+                //print(userAnnotation.title!)
+                if user.value(forKey: "username") as? String == userAnnotation.title {
+                    selectedUser = user
+                    break
+                }
+            }
+        }
+    }
+    
+    @objc func SeeNearbyUserProfile(sender: UIButton) {
+        performSegue(withIdentifier: "mapToFriendSegue", sender: nil)
     }
     
     @objc func AddLocation(sender: UIButton) {
@@ -281,6 +319,11 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
             let detailsViewController = destinationNavigationController.topViewController as! LocationDetailsViewController
             
             detailsViewController.location = createdLocation
+        } else if segue.identifier == "mapToFriendSegue" {
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let detailsViewController = destinationNavigationController.topViewController as! FriendDetailsViewController
+            
+            detailsViewController.user = selectedUser
         }
     }
 }
