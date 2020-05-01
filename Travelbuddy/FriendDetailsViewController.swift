@@ -13,8 +13,8 @@ class FriendDetailsViewController: UIViewController {
 
     var user : PFObject!
     
+    @IBOutlet weak var ratingControlStackView: RatingControl!
     @IBOutlet weak var reviewTextField: UITextField!
-    @IBOutlet weak var ratingView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
@@ -24,6 +24,9 @@ class FriendDetailsViewController: UIViewController {
         // round image
         profileImageView.layer.cornerRadius = self.profileImageView.frame.width / 2.0
         self.profileImageView.layer.masksToBounds = true
+        
+        // Show rating view
+        
         
         // Fill data
         FillData()

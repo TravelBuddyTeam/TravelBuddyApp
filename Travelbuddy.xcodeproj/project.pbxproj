@@ -14,7 +14,7 @@
 		1862FD7024495CAF00486AB9 /* UsersLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862FD6F24495CAF00486AB9 /* UsersLocationAnnotation.swift */; };
 		186B8B472456AA960078A581 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B8B462456AA960078A581 /* LocationDetailsViewController.swift */; };
 		18C703BA245BB653007FB9BA /* FriendDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C703B9245BB653007FB9BA /* FriendDetailsViewController.swift */; };
-		18C703BE245C08BE007FB9BA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C703BD245C08BE007FB9BA /* RatingView.swift */; };
+		18C703C0245C1238007FB9BA /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C703BF245C1238007FB9BA /* RatingControl.swift */; };
 		4B38BC80BED93479D6DD5B19 /* Pods_Travelbuddy_TravelbuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FD5BE3E1234C8B10921B2 /* Pods_Travelbuddy_TravelbuddyUITests.framework */; };
 		932A456F7A0705A23ED775A3 /* Pods_TravelbuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9EADF2E3AD8C1502FBCF0 /* Pods_TravelbuddyTests.framework */; };
 		C10E5122244D2CA200BB05B0 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10E5121244D2CA200BB05B0 /* LocationsViewController.swift */; };
@@ -61,7 +61,7 @@
 		1862FD6F24495CAF00486AB9 /* UsersLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLocationAnnotation.swift; sourceTree = "<group>"; };
 		186B8B462456AA960078A581 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		18C703B9245BB653007FB9BA /* FriendDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsViewController.swift; sourceTree = "<group>"; };
-		18C703BD245C08BE007FB9BA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RatingView.swift; path = "/Users/danieladu-djan/Misc/TravelBuddyApp/Travelbuddy/RatingView.swift"; sourceTree = "<absolute>"; };
+		18C703BF245C1238007FB9BA /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		5110473FAF4DCE4F32E3D575 /* Pods-TravelbuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelbuddyTests.debug.xcconfig"; path = "Target Support Files/Pods-TravelbuddyTests/Pods-TravelbuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E904CE39EB2B14876B0969B /* Pods-TravelbuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelbuddyTests.release.xcconfig"; path = "Target Support Files/Pods-TravelbuddyTests/Pods-TravelbuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117CBF64C3A451B4ED8966A /* Pods-Travelbuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travelbuddy.release.xcconfig"; path = "Target Support Files/Pods-Travelbuddy/Pods-Travelbuddy.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,9 +162,9 @@
 			isa = PBXGroup;
 			children = (
 				C197A6B3243CF89E00CFA540 /* AppDelegate.swift */,
-				18C703BD245C08BE007FB9BA /* RatingView.swift */,
 				C197A6B5243CF89E00CFA540 /* SceneDelegate.swift */,
 				C197A6B9243CF89E00CFA540 /* Main.storyboard */,
+				18C703BF245C1238007FB9BA /* RatingControl.swift */,
 				18C703B9245BB653007FB9BA /* FriendDetailsViewController.swift */,
 				C137349424588E66007455F7 /* ChatViewController.swift */,
 				C1D141D92457412A0092EB3B /* profileViewController.swift */,
@@ -458,6 +458,7 @@
 				186B8B472456AA960078A581 /* LocationDetailsViewController.swift in Sources */,
 				C134AE36244D339200D3EE4E /* FriendsTableViewCell.swift in Sources */,
 				18C703BA245BB653007FB9BA /* FriendDetailsViewController.swift in Sources */,
+				18C703C0245C1238007FB9BA /* RatingControl.swift in Sources */,
 				C11713FC243EB07500C3D438 /* LoginViewController.swift in Sources */,
 				C197A6B4243CF89E00CFA540 /* AppDelegate.swift in Sources */,
 				1862FD7024495CAF00486AB9 /* UsersLocationAnnotation.swift in Sources */,
@@ -465,7 +466,6 @@
 				1862FD6A244957A000486AB9 /* TravelLocationAnnotation.swift in Sources */,
 				182E651224480B70007AA1DB /* SuggestionCell.swift in Sources */,
 				C10E5124244D2FD500BB05B0 /* FriendsViewController.swift in Sources */,
-				18C703BE245C08BE007FB9BA /* RatingView.swift in Sources */,
 				C137349524588E66007455F7 /* ChatViewController.swift in Sources */,
 				C11713FE243EB08800C3D438 /* HomeViewController.swift in Sources */,
 				C134AE34244D337400D3EE4E /* LocationsTableViewCell.swift in Sources */,

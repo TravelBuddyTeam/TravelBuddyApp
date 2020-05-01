@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/danieladu-djan/Misc/TravelBuddyApp/Travelbuddy/RatingView.swift">
-   </FileRef>
-   <FileRef
       location = "group:Travelbuddy.xcodeproj">
    </FileRef>
    <FileRef

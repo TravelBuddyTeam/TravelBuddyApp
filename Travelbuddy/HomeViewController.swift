@@ -258,6 +258,7 @@ MKMapViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSour
             annotationView.rightCalloutAccessoryView = button
             // Add profile image as left accessory
             let profileImage = UIImageView(frame: CGRect(x: 30, y: 30, width: 50, height: 50))
+            profileImage.contentMode = UIView.ContentMode.scaleToFill
             profileImage.af_setImage(withURL: userAnnotation.profileImageUrl, placeholderImage: UIImage(named: "person"))
             annotationView.leftCalloutAccessoryView = profileImage
             
