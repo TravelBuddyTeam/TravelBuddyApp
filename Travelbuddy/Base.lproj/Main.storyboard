@@ -687,28 +687,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTL-xa-N2d">
                                 <rect key="frame" x="132" y="248" width="150" height="69"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBB-cp-1tk">
-                                        <rect key="frame" x="14" y="9.6666666666666679" width="43" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="Ktj-gk-FqD"/>
-                                            <constraint firstAttribute="width" constant="43" id="ipy-0e-JGY"/>
-                                        </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" backgroundImage="person.badge.plus" catalog="system"/>
-                                        <connections>
-                                            <action selector="onFriendRequestButton:" destination="Dnv-Qs-FLD" eventType="touchUpInside" id="X2n-Bh-Own"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teo-sP-9za">
-                                        <rect key="frame" x="14" y="55" width="58" height="14"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="H9p-LE-vPq"/>
-                                            <constraint firstAttribute="height" constant="14" id="qpX-Sr-D1f"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6P-DM-OfJ">
                                         <rect key="frame" x="103" y="10.333333333333332" width="33" height="34"/>
                                         <constraints>
@@ -722,7 +700,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3G-AX-X3p">
-                                        <rect key="frame" x="95" y="52.666666666666686" width="47" height="14"/>
+                                        <rect key="frame" x="95" y="54.666666666666686" width="47" height="14"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="14" id="5NK-qe-moF"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="47" id="yCo-zW-ZuU"/>
@@ -731,17 +709,49 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhf-9e-a70">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="69"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBB-cp-1tk">
+                                                <rect key="frame" x="24" y="9" width="43" height="37.666666666666671"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="39" id="Ktj-gk-FqD"/>
+                                                    <constraint firstAttribute="width" constant="43" id="ipy-0e-JGY"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" backgroundImage="person.crop.circle.badge.xmark" catalog="system"/>
+                                                <connections>
+                                                    <action selector="onFriendRequestButton:" destination="Dnv-Qs-FLD" eventType="touchUpInside" id="X2n-Bh-Own"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teo-sP-9za">
+                                                <rect key="frame" x="16.666666666666657" y="55" width="58" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="14" id="qpX-Sr-D1f"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="tBB-cp-1tk" firstAttribute="top" secondItem="Lhf-9e-a70" secondAttribute="top" constant="8" id="FLl-fX-ogb"/>
+                                            <constraint firstItem="tBB-cp-1tk" firstAttribute="centerX" secondItem="Lhf-9e-a70" secondAttribute="centerX" id="KyQ-IE-XOi"/>
+                                            <constraint firstItem="teo-sP-9za" firstAttribute="top" secondItem="tBB-cp-1tk" secondAttribute="bottom" constant="8" id="deX-Hr-V6m"/>
+                                            <constraint firstItem="teo-sP-9za" firstAttribute="centerX" secondItem="Lhf-9e-a70" secondAttribute="centerX" id="hkt-sD-lcU"/>
+                                            <constraint firstAttribute="width" constant="91" id="oTt-Nc-RA3"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="L6P-DM-OfJ" secondAttribute="trailing" constant="14" id="1d6-NZ-23C"/>
-                                    <constraint firstItem="tBB-cp-1tk" firstAttribute="leading" secondItem="GTL-xa-N2d" secondAttribute="leading" constant="14" id="8TD-8A-YJb"/>
-                                    <constraint firstItem="tBB-cp-1tk" firstAttribute="top" secondItem="GTL-xa-N2d" secondAttribute="top" constant="8" id="BRx-g7-PpQ"/>
-                                    <constraint firstItem="teo-sP-9za" firstAttribute="leading" secondItem="GTL-xa-N2d" secondAttribute="leading" constant="14" id="RQ4-ft-fxw"/>
+                                    <constraint firstItem="Lhf-9e-a70" firstAttribute="leading" secondItem="GTL-xa-N2d" secondAttribute="leading" id="MXY-bt-gwi"/>
                                     <constraint firstAttribute="height" constant="69" id="T0j-D4-XCt"/>
-                                    <constraint firstItem="s3G-AX-X3p" firstAttribute="top" secondItem="L6P-DM-OfJ" secondAttribute="bottom" constant="8" id="U3E-kA-bvB"/>
+                                    <constraint firstItem="s3G-AX-X3p" firstAttribute="top" secondItem="L6P-DM-OfJ" secondAttribute="bottom" constant="10" id="U3E-kA-bvB"/>
+                                    <constraint firstItem="Lhf-9e-a70" firstAttribute="top" secondItem="GTL-xa-N2d" secondAttribute="top" id="fbm-gh-ah0"/>
                                     <constraint firstAttribute="trailing" secondItem="s3G-AX-X3p" secondAttribute="trailing" constant="8" id="hfm-bg-PN6"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lhf-9e-a70" secondAttribute="bottom" id="kMK-0U-7aB"/>
                                     <constraint firstItem="L6P-DM-OfJ" firstAttribute="top" secondItem="GTL-xa-N2d" secondAttribute="top" constant="10" id="nqy-bP-bpQ"/>
-                                    <constraint firstItem="teo-sP-9za" firstAttribute="top" secondItem="tBB-cp-1tk" secondAttribute="bottom" constant="8" id="rMf-wP-079"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J2-7Z-zsv">
@@ -926,7 +936,7 @@
         <image name="location" catalog="system" width="128" height="115"/>
         <image name="message" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
-        <image name="person.badge.plus" catalog="system" width="128" height="116"/>
+        <image name="person.crop.circle.badge.xmark" catalog="system" width="128" height="101"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="98"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>

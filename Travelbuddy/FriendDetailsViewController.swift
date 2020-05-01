@@ -128,6 +128,41 @@ class FriendDetailsViewController: UIViewController {
                 print("Error: \(error?.localizedDescription ?? "unknown")")
             }
         }
+        
+        let query1 = PFQuery(className:"FriendRequest")
+        query1.whereKey("fromUser", equalTo: PFUser.current()!)
+        query1.whereKey("toUser", equalTo: user!)
+        
+        let query2 = PFQuery(className:"FriendRequest")
+        query2.whereKey("fromUser", equalTo: user!)
+        query2.whereKey("toUser", equalTo: PFUser.current()!)
+        
+        let query3 = PFQuery.orQuery(withSubqueries: [query1, query2])
+        
+        query3.limit = 1
+        
+        query3.findObjectsInBackground { (requests: [PFObject]?, error: Error?) in
+            if requests != nil {
+                if requests!.count == 0 {
+                    self.friendRequestLabel.text = "Add Friend"
+                    self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.badge.plus"), for: UIControl.State.normal)
+                } else {
+                    let friendRequest = requests![0]
+                    
+                    if (friendRequest.value(forKey: "status") as! Bool) {
+                        // Unfriend
+                        self.friendRequestLabel.text = "Unfriend"
+                        self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.badge.minus"), for: UIControl.State.normal)
+                    } else {
+                        // cancel request
+                        self.friendRequestLabel.text = "Cancel Request"
+                        self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.crop.circle.badge.xmark"), for: UIControl.State.normal)
+                    }
+                }
+            } else {
+                print("Error: \(error?.localizedDescription ?? "unknown")")
+            }
+        }
     }
     
     @IBAction func onBackButton(_ sender: Any) {
@@ -158,18 +193,19 @@ class FriendDetailsViewController: UIViewController {
                     newFriendRequest["status"] = false
                     newFriendRequest.saveInBackground(block: {(success, error) in
                         if success {
-                            
+                            self.friendRequestLabel.text = "Cancel Request"
+                            self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.crop.circle.badge.xmark"), for: UIControl.State.normal)
                         }
                     })
                 } else {
                     let friendRequest = requests![0]
                     
-                    if (friendRequest.value(forKey: "status") as! Bool) {
-                        // Unfriend
-                        
-                    } else {
-                        // cancel request
-                    }
+                    friendRequest.deleteInBackground(block: {(success, error) in
+                        if success {
+                            self.friendRequestLabel.text = "Add Friend"
+                            self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.badge.plus"), for: UIControl.State.normal)
+                        }
+                    })
                 }
             } else {
                 print("Error: \(error?.localizedDescription ?? "unknown")")
