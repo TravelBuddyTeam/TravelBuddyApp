@@ -16,12 +16,22 @@ class profileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     
+    var currentUser : PFObject!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let currentUser = PFUser.current()
+        currentUser = PFUser.current()
         
-        userNameLabel.text = currentUser?.username
+        // pull profile image
+        if currentUser.value(forKey: "profileImage") != nil {
+            let profileImageFile = currentUser.value(forKey: "profileImage") as! PFFileObject
+            let profileImageUrlString = profileImageFile.url!
+            let profileImageUrl = URL(string: profileImageUrlString)!
+            imageView.af_setImage(withURL: profileImageUrl)
+        }
+        
+        userNameLabel.text = currentUser?.value(forKey: "username") as? String
 
     }
     
@@ -51,6 +61,12 @@ class profileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let scaledImage = image.af_imageScaled(to: size)
         
         imageView.image = scaledImage
+        
+        // save user image
+        let profileImageData = imageView.image!.pngData()
+        let profileImageFile = PFFileObject(name: "image.png", data: profileImageData!)
+        currentUser["profileImage"] = profileImageFile
+        currentUser.saveInBackground()
         
         dismiss(animated: true, completion: nil)
     }

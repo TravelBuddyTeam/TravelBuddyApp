@@ -67,6 +67,7 @@ class LocationDetailsViewController: UIViewController, UIImagePickerControllerDe
             let heroImageUrl = URL(string: heroImageUrlString)!
             heroLocationImageView.af_setImage(withURL: heroImageUrl)
         }
+        
         locationNameTextField.text = location.value(forKey: "name") as? String
         locationAddressTextField.text = location.value(forKey: "address") as? String
         locationDescriptionTextField.text = location.value(forKey: "synopsis") as? String
