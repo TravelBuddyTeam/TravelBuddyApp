@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 @IBDesignable class RatingControl: UIStackView {
     
     private var ratingButtons = [UIButton]()
+    
+    var userRatingPFObj : PFObject!
      
     var rating = 0 {
         didSet {
@@ -101,6 +104,12 @@ import UIKit
             // Otherwise set the rating to the selected star
             rating = selectedRating
         }
+        
+        // Update user rating
+        userRatingPFObj["rating"] = (userRatingPFObj.value(forKey: "rating") as! Int) + rating
+        userRatingPFObj["numUsers"] = (userRatingPFObj.value(forKey: "numUsers") as! Int) + 1
+        userRatingPFObj.saveInBackground()
+        print("Rated")
     }
     
     private func updateButtonSelectionStates() {
