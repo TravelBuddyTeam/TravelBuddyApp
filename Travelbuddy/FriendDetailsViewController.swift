@@ -12,6 +12,7 @@ import Parse
 class FriendDetailsViewController: UIViewController {
 
     var user : PFObject!
+    var username : String!
     var userRatingPFObj : PFObject!
     
     @IBOutlet weak var friendRequestLabel: UILabel!
@@ -36,7 +37,7 @@ class FriendDetailsViewController: UIViewController {
         
         // how much to move view up
         initialY = parentView.frame.origin.y
-        offset = -100
+        offset = -150
         
         NotificationCenter.default.addObserver(self,
         selector: #selector(self.KeyboardShowNotification(notification:)),
@@ -48,7 +49,7 @@ class FriendDetailsViewController: UIViewController {
         name: UIResponder.keyboardWillHideNotification,
         object: nil)
         
-        
+
         // Fill data
         FillData()
     }
@@ -154,9 +155,15 @@ class FriendDetailsViewController: UIViewController {
                         self.friendRequestLabel.text = "Unfriend"
                         self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.badge.minus"), for: UIControl.State.normal)
                     } else {
-                        // cancel request
-                        self.friendRequestLabel.text = "Cancel Request"
-                        self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.crop.circle.badge.xmark"), for: UIControl.State.normal)
+                        if (friendRequest["fromUser"] as? PFObject)?.objectId == PFUser.current()?.objectId {
+                            // cancel request
+                            self.friendRequestLabel.text = "Cancel Request"
+                            self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.crop.circle.badge.xmark"), for: UIControl.State.normal)
+                        } else {
+                            // Accept Request
+                            self.friendRequestLabel.text = "Accept"
+                            self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.crop.circle.badge.checkmark"), for: UIControl.State.normal)
+                        }
                     }
                 }
             } else {
@@ -200,12 +207,26 @@ class FriendDetailsViewController: UIViewController {
                 } else {
                     let friendRequest = requests![0]
                     
-                    friendRequest.deleteInBackground(block: {(success, error) in
-                        if success {
-                            self.friendRequestLabel.text = "Add Friend"
-                            self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.badge.plus"), for: UIControl.State.normal)
-                        }
-                    })
+                    if (friendRequest["fromUser"] as? PFObject)?.objectId == PFUser.current()?.objectId {
+                        
+                        // Delete friend request
+                        friendRequest.deleteInBackground(block: {(success, error) in
+                            if success {
+                                self.friendRequestLabel.text = "Add Friend"
+                                self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.badge.plus"), for: UIControl.State.normal)
+                            }
+                        })
+                    } else {
+                        // Accept friend request
+                        friendRequest.setValue(true, forKey: "status")
+                        friendRequest.saveInBackground(block: {(success, error) in
+                            if success {
+                                // Unfriend
+                                self.friendRequestLabel.text = "Unfriend"
+                                self.friendRequestButton.setBackgroundImage(UIImage(systemName: "person.badge.minus"), for: UIControl.State.normal)
+                            }
+                        })
+                    }
                 }
             } else {
                 print("Error: \(error?.localizedDescription ?? "unknown")")

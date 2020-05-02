@@ -16,6 +16,10 @@ class FriendsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        // round image
+        friendImageView.layer.cornerRadius = self.friendImageView.frame.width / 2.0
+        self.friendImageView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
