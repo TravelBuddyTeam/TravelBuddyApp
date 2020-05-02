@@ -13,6 +13,7 @@ An App for users to interact with people who live in the place they plan on visi
 ### Current Progress
 <img src="http://g.recordit.co/zY2ZK9GbhI.gif" width=250><br>
 <img src="http://g.recordit.co/KsphHBwpHk.gif" width=250><br>
+<img src="http://g.recordit.co/CfEQjcatdu.gif" width=250>. <img src="http://g.recordit.co/chZrc8474O.gif" width=250>  <img src="http://g.recordit.co/goaClW4nI6.gif" width=250>
 
 ### App Evaluation
 [Evaluation of your app across the following attributes]
