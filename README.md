@@ -33,7 +33,7 @@ An App for users to interact with people who live in the place they plan on visi
 - [ ] User must be able to message people in the location that they are interested in visiting
 - [X] User must be able to login in and sign up
 - [x] App provides travel information for each location
-- [ ] User can rate the person they messaged based on how helpful they were - higher rating for a user allows them access to perks and rewards
+- [x] User can rate the person they messaged based on how helpful they were - higher rating for a user allows them access to perks and rewards
 
 **Optional Nice-to-have Stories**
 - [ ] User must be able to register as an inhibant of the location in which they live
