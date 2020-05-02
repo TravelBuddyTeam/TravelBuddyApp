@@ -166,9 +166,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFq-FJ-pTT">
+                                                    <rect key="frame" x="301" y="70" width="73" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="28a-qP-zEl"/>
+                                                        <constraint firstAttribute="width" constant="73" id="OQZ-vB-Vhl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="BFq-FJ-pTT" secondAttribute="trailing" constant="40" id="3IA-SJ-PKG"/>
                                                 <constraint firstItem="DEo-9b-ux3" firstAttribute="leading" secondItem="DtR-5N-wty" secondAttribute="leading" constant="5" id="NZz-MO-CDQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="BFq-FJ-pTT" secondAttribute="bottom" constant="10" id="VPq-6x-bCi"/>
                                                 <constraint firstItem="84J-fs-xlp" firstAttribute="top" secondItem="DtR-5N-wty" secondAttribute="top" constant="25" id="cRE-3z-wcE"/>
                                                 <constraint firstItem="DEo-9b-ux3" firstAttribute="top" secondItem="DtR-5N-wty" secondAttribute="top" constant="10" id="qbi-Zl-NpQ"/>
                                                 <constraint firstItem="84J-fs-xlp" firstAttribute="leading" secondItem="DEo-9b-ux3" secondAttribute="trailing" constant="10" id="ygH-1b-Y6B"/>
@@ -178,6 +190,7 @@
                                         <connections>
                                             <outlet property="friendImageView" destination="DEo-9b-ux3" id="I6d-B1-sYy"/>
                                             <outlet property="friendNameLabel" destination="84J-fs-xlp" id="dYR-TE-ye1"/>
+                                            <outlet property="friendStateLabel" destination="BFq-FJ-pTT" id="hqH-Nn-kAn"/>
                                             <segue destination="hmh-qX-Eop" kind="presentation" identifier="friendDetailViewControllerSegue" modalPresentationStyle="fullScreen" id="lWo-dk-xqq"/>
                                         </connections>
                                     </tableViewCell>

@@ -207,7 +207,7 @@ class FriendDetailsViewController: UIViewController {
                 } else {
                     let friendRequest = requests![0]
                     
-                    if (friendRequest["fromUser"] as? PFObject)?.objectId == PFUser.current()?.objectId {
+                    if (friendRequest["fromUser"] as? PFObject)?.objectId == PFUser.current()?.objectId || self.friendRequestLabel.text == "Unfriend" {
                         
                         // Delete friend request
                         friendRequest.deleteInBackground(block: {(success, error) in

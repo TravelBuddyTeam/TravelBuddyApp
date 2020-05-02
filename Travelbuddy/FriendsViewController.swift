@@ -27,6 +27,10 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         GetFriends()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        GetFriends()
+    }
+    
     func GetFriends() {
         let query1 = PFQuery(className:"FriendRequest")
         query1.whereKey("fromUser", equalTo: PFUser.current()!)
@@ -71,6 +75,13 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let userName = friend.value(forKey: "username") as? String
         cell.friendNameLabel.text = userName
+        
+        let friendStatus = (friendRequest.value(forKey: "status") as? Bool)!
+        if friendStatus {
+            cell.friendStateLabel.text = ""
+        } else {
+            cell.friendStateLabel.text = "Pending"
+        }
 
         if friend.value(forKey: "profileImage") != nil {
             let imageFile = friend.value(forKey: "profileImage") as! PFFileObject
