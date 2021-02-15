@@ -28,7 +28,7 @@
 		<key>InputBarAccessoryView.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>11</integer>
 		</dict>
 		<key>MessageKit-MessageKitAssets.xcscheme_^#shared#^_</key>
 		<dict>
@@ -38,7 +38,7 @@
 		<key>MessageKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>9</integer>
 		</dict>
 		<key>Parse-Parse.xcscheme</key>
 		<dict>
@@ -78,12 +78,12 @@
 		<key>Scaledrone.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>10</integer>
 		</dict>
 		<key>Starscream.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>13</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
